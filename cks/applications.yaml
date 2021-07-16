@@ -1,0 +1,24 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  creationTimestamp: "2021-07-15T14:30:27Z"
+  name: applications
+  namespace: applications
+  resourceVersion: "110931"
+  uid: a728ee9f-19f5-4374-982d-5bed92dc7dfe
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - create
+  - delete
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  - statefulsets
+  verbs:
+  - create
+  - delete

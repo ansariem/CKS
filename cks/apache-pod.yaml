@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: apache
+  name: apache
+spec:
+#  securityContext:
+ #     runAsNonRoot: true
+  containers:
+  - image: docker.io/httpd
+    name: apache1
+ #   securityContext:
+  #    runAsNonRoot: true
+    resources: {}
+    env: 
+    - name: SECRET
+      value: "5555666677778888"
+#    readinessProbe: 
+ #     exec:
+  #      command:
+   #     - apt-get
+    #    - update
+     # initialDelaySeconds: 5
+      #periodSeconds: 3
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

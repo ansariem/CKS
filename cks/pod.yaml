@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: secret-manager
+  name: secret-manager
+  namespace: ns-secure
+spec:
+  volumes:
+    - name: sec-a2
+      secret:
+        secretName: sec-a2
+  serviceAccountName: secret-manager
+  containers:
+    - image: nginx
+      name: secret-manager
+      volumeMounts:
+        - name: sec-a2
+          mountPath: /etc/sec-a2
+          readOnly: true
+      env:
+        - name: SEC_A1
+          valueFrom:
+            secretKeyRef:
+              name: sec-a1
+              key: user
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always

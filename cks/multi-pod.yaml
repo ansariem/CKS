@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: holiday
+spec:
+
+  restartPolicy: Never
+
+  containers:
+
+  - name: c1
+    image: bash:5.1.0
+    command: ['sh', '-c', 'echo The app is running! && sleep 1d']
+  - name: c2
+    image: bash:5.1.0
+    command: ['sh', '-c', 'echo The app is running! && sleep 1d']
+    securityContext:
+      readOnlyRootFilesystem: true

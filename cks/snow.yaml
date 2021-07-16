@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: snow
+  name: snow
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: snow
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: snow
+    spec:
+      containers:
+      - image: nginx:1.19.6
+        name: nginx
+        resources: {}
+        securityContext:
+          readOnlyRootFilesystem: true
+        volumeMounts:
+        - mountPath: /var/cache/nginx
+          name: write1
+        - mountPath: /var/run
+          name: write2
+      volumes:
+      - name: write1
+        emptyDir: {}
+      - name: write2
+        emptyDir: {}
+status: {}
